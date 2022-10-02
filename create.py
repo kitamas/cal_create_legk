@@ -96,8 +96,8 @@ def main():
     req = request.get_json(force=True)
     print(json.dumps(req, indent=4))
 
-    #summary = req.get('sessionInfo').get('parameters').get('summary')
-    #location = req.get('sessionInfo').get('parameters').get('location')
+    summary = req.get('sessionInfo').get('parameters').get('summary')
+    location = req.get('sessionInfo').get('parameters').get('location')
 
     creds = authentication()
     service = build("calendar", "v3", credentials=creds)
