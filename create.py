@@ -115,9 +115,7 @@ def main():
     # = = =   
     weekDays = ("hétfő","kedd","szerda","csütörtök","péntek","szombat","vasárnap")
     
-    thisDay = datetime.datetime.now()
-
-    thisDayWeek = thisDay.weekday()
+    thisDayWeek = current_dateTime.weekday()
     print("thisDayWeek")
     print(thisDayWeek)
 
