@@ -64,6 +64,7 @@ def hour_rounder(t):
 def webhook():
     #text = "webhook flask text response"
     #text = main()
+
     text_param =  main()
     text = text_param['text']
     event_id = text_param['event_id']
@@ -127,8 +128,8 @@ def main():
     #event_result = service.events().insert(calendarId='61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com',sendUpdates='all',
     event_result = service.events().insert(calendarId='61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com',
        body={
-           "summary": "summary",
-           "location": "location",
+           "summary": summary,
+           "location": location,
            "description": "This is the description (parkolo/targyalo, stb)",
            "start": {"dateTime": start, "timeZone": "Europe/Budapest"},
            "end": {"dateTime": end, "timeZone": "Europe/Budapest"},
