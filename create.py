@@ -117,7 +117,7 @@ def main():
     
     thisDay = datetime.datetime.now()
 
-    thisDayWeek = thisXMas.weekday()
+    thisDayWeek = thisDay.weekday()
     print("thisDayWeek")
     print(thisDayWeek)
 
