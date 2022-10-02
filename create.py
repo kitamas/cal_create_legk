@@ -114,7 +114,7 @@ def main():
 
     # = = = 
     weekDays = ("Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday")
-    thisXMas    = datetime.datetime.date(2022,10,02)
+    thisXMas    = datetime.datetime.date(2022,10,2)
 
     thisXMasDay = thisXMas.weekday()
     print("thisXMasDay")
