@@ -112,19 +112,6 @@ def main():
     current_dateTime = datetime.datetime.now() + datetime.timedelta(hours=3)
     # 2022-10-01 07:16:23.389600
 
-    # = = = 
-    weekDays = ("Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday")
-    thisXMas    = datetime.datetime.date(2022,10,02)
-
-    thisXMasDay = thisXMas.weekday()
-    print("thisXMasDay")
-    print(thisXMasDay)
-
-    thisXMasDayAsString = weekDays[thisXMasDay]
-    print("thisXMasDayAsString")
-    print(thisXMasDayAsString)
-    # = = = 
-
     current_dateTime_rounded = hour_rounder(current_dateTime)
     # 2022-10-01 08:00:00
 
