@@ -113,17 +113,17 @@ def main():
     # 2022-10-01 07:16:23.389600
 
     # = = =   
-    weekDays = ("Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday")
+    weekDays = ("hétfő","kedd","szerda","csütörtök","péntek","szombat","vasárnap")
     
-    thisXMas = datetime.datetime.now()
+    thisDay = datetime.datetime.now()
 
-    thisXMasDay = thisXMas.weekday()
-    print("thisXMasDay")
-    print(thisXMasDay)
+    thisDayWeek = thisXMas.weekday()
+    print("thisDayWeek")
+    print(thisDayWeek)
 
-    thisXMasDayAsString = weekDays[thisXMasDay]
-    print("thisXMasDayAsString")
-    print(thisXMasDayAsString)
+    thisDayWeekName = weekDays[thisDayWeek]
+    print("thisDayWeekName")
+    print(thisDayWeekName)
 
     # = = = 
 
