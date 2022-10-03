@@ -122,8 +122,6 @@ def main():
     print("thisDayWeekName")
     print(thisDayWeekName)
 
-    hour = datetime.datetime.now().hour
-    print("HOUR:", hour)
     # = = = 
 
     current_dateTime_rounded = hour_rounder(current_dateTime)
