@@ -94,7 +94,7 @@ def webhook():
 def main():
 
     req = request.get_json(force=True)
-    print(json.dumps(req, indent=4))
+    #print(json.dumps(req, indent=4))
 
     summary = req.get('sessionInfo').get('parameters').get('summary')
     location = req.get('sessionInfo').get('parameters').get('location')
@@ -165,7 +165,8 @@ def main():
        }
     ).execute()
 
-    text = "Starts: " + event_result['start']['dateTime'] + " Ends: " + event_result['end']['dateTime'] + " id: " + event_result['id']
+    #text = "Starts: " + event_result['start']['dateTime'] + " Ends: " + event_result['end']['dateTime'] + " id: " + event_result['id']
+    text = "Kezdődik: " + event_result['start']['dateTime'] + " Vége: " + event_result['end']['dateTime']
 
     text_param = {}
     text_param['text'] = text
