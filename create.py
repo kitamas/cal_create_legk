@@ -63,6 +63,7 @@ def authentication():
 
 
 def check_open():
+    print("DEF CHECK OPEN")
     # current_dateTime = datetime.datetime.now() + datetime.timedelta(hours=3)
     current_dateTime = datetime.datetime.now()
     # 2022-10-07 16:03:58.003427
@@ -71,35 +72,35 @@ def check_open():
     # 2022-10-07 15:00:00
 
     hour_minute = current_dateTime_rounded.strftime('%H:%M')
-    print("HOUR:", hour_minute)
+    # print("HOUR:", hour_minute)
 
     open_start_time = ["08:00", "08:00", "08:00", "08:00", "08:00", "08:00", "11:00"]
     open_end_time = ["17:00", "17:00", "17:00", "17:00", "17:00", "13:00", "18:00"]
 
     weekDays = ("hétfő", "kedd", "szerda", "csütörtök", "péntek", "szombat", "vasárnap")
     week_day = current_dateTime.weekday()
-    print("week day: ", week_day)
+    # print("week day: ", week_day)
 
     week_day_name = weekDays[week_day]
-    print("week_day_name:", week_day_name)
+    # print("week_day_name:", week_day_name)
 
-    print("open_start_time:", open_start_time[week_day])
-    print("open_end_time:", open_end_time[week_day])
+    # print("open_start_time:", open_start_time[week_day])
+    # print("open_end_time:", open_end_time[week_day])
 
     # Textual month, day and year	
-    #d2 = current_dateTime.strftime("%Y %B, %d")
+    # d2 = current_dateTime.strftime("%Y %B, %d")
     # 2022 October, 01
 
     if hour_minute < open_start_time[week_day]:
-        print("KORAN", hour_minute, "<", open_start_time[week_day])
+        # print("KORAN", hour_minute, "<", open_start_time[week_day])
         text = "KORÁN. A mai nyitás " + open_start_time[week_day] + " a zárás " + open_end_time[week_day]
 
     if hour_minute >= open_end_time[week_day]:
-        print("KESON", hour_minute, ">=", open_end_time[week_day])
+        # print("KESON", hour_minute, ">=", open_end_time[week_day])
         text = "KÉSŐN. A mai nyitás " + open_start_time[week_day] + " a zárás " + open_end_time[week_day]
 
     if hour_minute >= open_start_time[week_day] and hour_minute <= open_end_time[week_day]:
-        print("KOZOTTE", open_start_time[week_day], "<", hour_minute, "<", open_end_time[week_day])
+        # print("KOZOTTE", open_start_time[week_day], "<", hour_minute, "<", open_end_time[week_day])
         text = "True"
 
     # return checked_open
@@ -110,6 +111,7 @@ def hour_rounder(t):
     return (t.replace(second=0, microsecond=0, minute=0, hour=t.hour) + datetime.timedelta(hours=t.minute // 30))
 
 def webhook():
+    print("DEF WEBHOOK")
     # text = main()
     text = check_open()
     print("text = RET FROM CHECK OPEN = ", text)
@@ -143,7 +145,7 @@ def webhook():
 
 
 def main():
-    print("MAIN")
+    print("DEF MAIN")
     req = request.get_json(force=True)
     print(json.dumps(req, indent=4))
 
