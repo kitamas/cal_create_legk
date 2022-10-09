@@ -112,7 +112,7 @@ def hour_rounder(t):
 def webhook():
     # text = main()
     text = check_open()
-    print("text = ret from check open = ", text)
+    print("text = RET FROM CHECK OPEN = ", text)
 
     if text == "True":
         text_param = main()
@@ -143,6 +143,7 @@ def webhook():
 
 
 def main():
+    print("MAIN")
     req = request.get_json(force=True)
     print(json.dumps(req, indent=4))
 
