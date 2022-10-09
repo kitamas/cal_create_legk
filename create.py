@@ -69,25 +69,25 @@ def webhook():
     text = text_param['text']
     event_id = text_param['event_id']
 
-        res = {
-            "fulfillment_response": {
-                "messages": [
-                    {
-                        "text": {
-                            "text": [
-                                text
-                            ]
-                        }
+    res = {
+        "fulfillment_response": {
+            "messages": [
+                {
+                    "text": {
+                        "text": [
+                            text
+                        ]
                     }
-                ]
-            },
-            "session_info": {
-                "session": "session_name",
-                "parameters": {
-                    "event_id": event_id
                 }
+            ]
+        },
+        "session_info": {
+            "session" : "session_name",
+            "parameters": {
+                "event_id" : event_id
             }
         }
+    }
 
     return res
 
