@@ -112,8 +112,9 @@ def check_open():
 
 def webhook():
     # text = main()
+    print("WEBHOOK 111")
     text = check_open()
-
+    print("WEBHOOK 222")
     print("TEXT FRON CHECK OPEN",text)     
 
     if text == "True":
