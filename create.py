@@ -106,10 +106,8 @@ def check_open():
         # print("KOZOTTE", open_start_time[week_day], "<", hour_minute, "<", open_end_time[week_day])
         text = "True"
 
-    # return checked_open
-
+    print("CHECK OPEN RETURN TEXT",text)        
     return text
-
 
 
 def webhook():
