@@ -57,12 +57,7 @@ def authentication():
 
 @app.route('/webhook', methods=['GET','POST'])
 
-def webhook():
-
-    print("WEBHOOK 111")
-    text = check_open()
-    print("WEBHOOK 222")
-    print("TEXT FRON CHECK OPEN",text)     
+def webhook():   
 
     #if text == "True":
     text_param = main()
