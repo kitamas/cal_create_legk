@@ -66,7 +66,6 @@ def hour_rounder(t):
     # return (t.replace(second=0, microsecond=0, minute=0, hour=t.hour) + datetime.timedelta(hours=t.minute // 30))
 
 def check_open():
-    print("DEF CHECK OPEN")
     # current_dateTime = datetime.datetime.now() + datetime.timedelta(hours=3)
     current_dateTime = datetime.datetime.now()
     # 2022-10-07 16:03:58.003427
@@ -108,16 +107,14 @@ def check_open():
         text = "True"
 
     # return checked_open
-    print("TEXT RETURN CHECK OPEN",text)
+
     return text
 
 
 
 def webhook():
-    print("DEF WEBHOOK")
     # text = main()
     text = check_open()
-    print("text = RET FROM CHECK OPEN = ", text)
 
     if text == "True":
         text_param = main()
