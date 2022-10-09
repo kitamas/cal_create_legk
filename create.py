@@ -64,10 +64,10 @@ def webhook():
     print("WEBHOOK 222")
     print("TEXT FRON CHECK OPEN",text)     
 
-    if text == "True":
-        text_param = main()
-        text = text_param['text']
-        event_id = text_param['event_id']
+    #if text == "True":
+    text_param = main()
+    text = text_param['text']
+    event_id = text_param['event_id']
 
         res = {
             "fulfillment_response": {
