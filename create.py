@@ -114,6 +114,8 @@ def webhook():
     # text = main()
     text = check_open()
 
+    print("TEXT FRON CHECK OPEN",text)     
+
     if text == "True":
         text_param = main()
         text = text_param['text']
