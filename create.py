@@ -73,8 +73,8 @@ def check_open():
     hour_minute = current_dateTime_rounded.strftime('%H:%M')
     print("HOUR:", hour_minute)
 
-    open_start_time = ["08:00", "08:00", "08:00", "08:00", "08:00", "08:00", "12:00"]
-    open_end_time = ["17:00", "17:00", "17:00", "17:00", "17:00", "13:00", "13:00"]
+    open_start_time = ["08:00", "08:00", "08:00", "08:00", "08:00", "08:00", "14:00"]
+    open_end_time = ["17:00", "17:00", "17:00", "17:00", "17:00", "13:00", "18:00"]
 
     weekDays = ("hétfő", "kedd", "szerda", "csütörtök", "péntek", "szombat", "vasárnap")
     week_day = current_dateTime.weekday()
