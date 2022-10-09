@@ -56,11 +56,10 @@ def authentication():
     return creds
 
 @app.route('/webhook', methods=['GET','POST'])
+def webhook():
 
-def webhook():   
-
-    #if text == "True":
-    text_param = main()
+    #text = main()
+    text_param =  main()
     text = text_param['text']
     event_id = text_param['event_id']
 
@@ -161,11 +160,5 @@ def main():
   
     #return text
     return text_param
-
-def check_open():
-    text = "True"
-
-    print("CHECK OPEN RETURN TEXT",text)        
-    return text
 
     app.run()
