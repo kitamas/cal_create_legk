@@ -71,8 +71,9 @@ def check_open():
     current_dateTime = datetime.datetime.now()
     # 2022-10-07 16:03:58.003427
 
-    current_dateTime_rounded = hour_rounder(current_dateTime)
+    # hour_rounder !!! current_dateTime_rounded = hour_rounder(current_dateTime)
     # 2022-10-07 15:00:00
+    current_dateTime_rounded = current_dateTime
 
     hour_minute = current_dateTime_rounded.strftime('%H:%M')
     print("HOUR:", hour_minute)
