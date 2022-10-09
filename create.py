@@ -72,7 +72,7 @@ def check_open():
     # 2022-10-07 15:00:00
 
     hour_minute = current_dateTime_rounded.strftime('%H:%M')
-    # print("HOUR:", hour_minute)
+    print("HOUR:", hour_minute)
 
     open_start_time = ["08:00", "08:00", "08:00", "08:00", "08:00", "08:00", "11:00"]
     open_end_time = ["17:00", "17:00", "17:00", "17:00", "17:00", "13:00", "18:00"]
@@ -104,6 +104,7 @@ def check_open():
         text = "True"
 
     # return checked_open
+    print("TEXT RETURN CHECK OPEN",text)
     return text
 
 def hour_rounder(t):
