@@ -61,9 +61,6 @@ def authentication():
 
 @app.route('/webhook', methods=['GET', 'POST'])
 
-def hour_rounder(t):
-    # Rounds to nearest hour by adding a timedelta hour if minute >= 30
-    return (t.replace(second=0, microsecond=0, minute=0, hour=t.hour) + datetime.timedelta(hours=t.minute // 30))
 
 def check_open():
     # current_dateTime = datetime.datetime.now() + datetime.timedelta(hours=3)
@@ -108,6 +105,9 @@ def check_open():
     # return checked_open
     return text
 
+def hour_rounder(t):
+    # Rounds to nearest hour by adding a timedelta hour if minute >= 30
+    return (t.replace(second=0, microsecond=0, minute=0, hour=t.hour) + datetime.timedelta(hours=t.minute // 30))
 
 def webhook():
     # text = main()
