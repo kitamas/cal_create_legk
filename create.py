@@ -55,10 +55,15 @@ def authentication():
     )
     return creds
 
+def hour_rounder(t):
+    # Rounds to nearest hour by adding a timedelta hour if minute >= 30
+    return (t.replace(second=0, microsecond=0, minute=0, hour=t.hour) + datetime.timedelta(hours=t.minute//30))
+
 @app.route('/webhook', methods=['GET','POST'])
 def webhook():
-
+    #text = "webhook flask text response"
     #text = main()
+
     text_param =  main()
     text = text_param['text']
     event_id = text_param['event_id']
@@ -89,39 +94,50 @@ def webhook():
 def main():
 
     req = request.get_json(force=True)
-    print(json.dumps(req, indent=4))
-
-    year = req.get('sessionInfo').get('parameters').get('date').get('year')
-    month = req.get('sessionInfo').get('parameters').get('date').get('month')
-    day = req.get('sessionInfo').get('parameters').get('date').get('day')
-
-    hours = req.get('sessionInfo').get('parameters').get('time').get('hours')
-    minutes = req.get('sessionInfo').get('parameters').get('time').get('minutes')
+    #print(json.dumps(req, indent=4))
 
     summary = req.get('sessionInfo').get('parameters').get('summary')
     location = req.get('sessionInfo').get('parameters').get('location')
 
-    # print("DATE TIME PARAMETERS:", year, month, day, hours, minutes, "summary: ", summary, "location: ",  location)
-    # DATE TIME PARAMETERS: 2022.0 10.0 9.0 12.0 0.0 summary:  q location:  q
-
-    dt_parameter_string = str(int(year)) + "," + str(int(month)) + "," + str(int(day)) + "," + str(int(hours)) + "," + str(int(minutes))
-    # DATE TIME PARAMETERS STRING:  2022,10,9,12,0
-
-    datetime_dt_parameter_string = datetime.datetime.strptime(dt_parameter_string, '%Y,%m,%d,%H,%M')
-    # 2022-09-25 00:00:00
-
-    # start_date = datetime.datetime(2017, 10, 30, 00, 00, 00, 0).isoformat() + 'Z'
-
-    start = datetime_dt_parameter_string.isoformat("T", "seconds")
-    # 2022-10-09T12:00:00
-
-    # startZ = datetime_dt_parameter_string.isoformat() + 'Z'
-    # 2022-10-09T12:00:00Z
-
-    end = (datetime_dt_parameter_string + datetime.timedelta(hours=1)).isoformat("T", "seconds")
-
     creds = authentication()
     service = build("calendar", "v3", credentials=creds)
+
+    d = datetime.datetime.now().date()
+    # 2022-10-01
+    today = datetime.datetime(d.year, d.month, d.day, 10) + datetime.timedelta(hours=2)
+    # 2022-10-01 12:00:00
+
+    #current_dateTime = datetime.datetime.now()
+    current_dateTime = datetime.datetime.now() + datetime.timedelta(hours=3)
+    # 2022-10-01 07:16:23.389600
+
+    # = = =   
+    weekDays = ("hétfő","kedd","szerda","csütörtök","péntek","szombat","vasárnap")
+    
+    thisDayWeek = current_dateTime.weekday()
+    print("thisDayWeek")
+    print(thisDayWeek)
+
+    thisDayWeekName = weekDays[thisDayWeek]
+    print("thisDayWeekName")
+    print(thisDayWeekName)
+
+    hour = datetime.datetime.now().hour
+    print("HOUR:", hour)
+    # = = = 
+
+    current_dateTime_rounded = hour_rounder(current_dateTime)
+    # 2022-10-01 08:00:00
+
+    # Textual month, day and year	
+    #d2 = current_dateTime.strftime("%Y %B, %d")
+    # 2022 October, 01
+
+    #start = today.isoformat("T", "seconds")
+    start = current_dateTime_rounded.isoformat("T", "seconds")
+
+    #end = (today + datetime.timedelta(hours=1)).isoformat("T", "seconds")
+    end = (current_dateTime_rounded + datetime.timedelta(hours=1)).isoformat("T", "seconds")
 
     #event_result = service.events().insert(calendarId='61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com',sendUpdates='all',
     event_result = service.events().insert(calendarId='61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com',
@@ -149,10 +165,7 @@ def main():
        }
     ).execute()
 
-    text = "Event created. Starts: " + event_result['start']['dateTime'] + " Ends: " + event_result['end']['dateTime'] + " id: " + event_result['id']
-
-    #start_event = datetime.datetime.strptime(event_result['start']['dateTime'],'%Y-%m-%dT%H:%M:%S%z')
-    #end_event = datetime.datetime.strptime(event_result['end']['dateTime'],'%Y-%m-%dT%H:%M:%S%z')
+    text = "Starts: " + event_result['start']['dateTime'] + " Ends: " + event_result['end']['dateTime'] + " id: " + event_result['id']
 
     text_param = {}
     text_param['text'] = text
