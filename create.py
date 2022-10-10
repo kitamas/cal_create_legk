@@ -66,11 +66,6 @@ def webhook():
         text = check_open()
         print("text = ret from check open = ",text)
 
-    if text=="True":
-        print("check open true - text_param = main()")
-        print(text)
-
-
     text_param =  main()
     text = text_param['text']
     event_id = text_param['event_id']
@@ -118,27 +113,8 @@ def main():
     current_dateTime = datetime.datetime.now() + datetime.timedelta(hours=3)
     # 2022-10-01 07:16:23.389600
 
-    # = = =   
-    weekDays = ("hétfő","kedd","szerda","csütörtök","péntek","szombat","vasárnap")
-    
-    thisDayWeek = current_dateTime.weekday()
-    print("thisDayWeek")
-    print(thisDayWeek)
-
-    thisDayWeekName = weekDays[thisDayWeek]
-    print("thisDayWeekName")
-    print(thisDayWeekName)
-
-    hour = datetime.datetime.now().hour
-    print("HOUR:", hour)
-    # = = = 
-
     current_dateTime_rounded = hour_rounder(current_dateTime)
     # 2022-10-01 08:00:00
-
-    # Textual month, day and year	
-    #d2 = current_dateTime.strftime("%Y %B, %d")
-    # 2022 October, 01
 
     #start = today.isoformat("T", "seconds")
     start = current_dateTime_rounded.isoformat("T", "seconds")
@@ -172,7 +148,8 @@ def main():
        }
     ).execute()
 
-    text = "Starts: " + event_result['start']['dateTime'] + " Ends: " + event_result['end']['dateTime'] + " id: " + event_result['id']
+    #text = "Starts: " + event_result['start']['dateTime'] + " Ends: " + event_result['end']['dateTime'] + " id: " + event_result['id']
+    text = "Starts: " + event_result['start']['dateTime'] + " Ends: " + event_result['end']['dateTime']
 
     text_param = {}
     text_param['text'] = text
@@ -202,7 +179,7 @@ def check_open():
 
     weekDays = ("hétfő", "kedd", "szerda", "csütörtök", "péntek", "szombat", "vasárnap")
     week_day = current_dateTime.weekday()
-    print("week day: ", week_day)
+    # print("week day: ", week_day)
 
     week_day_name = weekDays[week_day]
     print("week_day_name:", week_day_name)
@@ -210,16 +187,12 @@ def check_open():
     print("open_start_time:", open_start_time[week_day])
     print("open_end_time:", open_end_time[week_day])
 
-    # Textual month, day and year	
-    #d2 = current_dateTime.strftime("%Y %B, %d")
-    # 2022 October, 01
-
     if hour_minute < open_start_time[week_day]:
-        print("KORAN", hour_minute, "<", open_start_time[week_day])
+        print("KORÁN", hour_minute, "<", open_start_time[week_day])
         text = "KORÁN. A mai nyitás " + open_start_time[week_day] + " a zárás " + open_end_time[week_day]
 
     if hour_minute >= open_end_time[week_day]:
-        print("KESON", hour_minute, ">=", open_end_time[week_day])
+        print("KÉSŐN", hour_minute, ">=", open_end_time[week_day])
         text = "KÉSŐN. A mai nyitás " + open_start_time[week_day] + " a zárás " + open_end_time[week_day]
 
     if hour_minute >= open_start_time[week_day] and hour_minute <= open_end_time[week_day]:
