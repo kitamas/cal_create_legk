@@ -62,8 +62,9 @@ def hour_rounder(t):
 @app.route('/webhook', methods=['GET','POST'])
 def webhook():
 
-    texto = check_open()
-    print("text = ret from check open = ",texto)
+    if check_open():
+        text = check_open()
+        print("text = ret from check open = ",text)
 
     text_param =  main()
     text = text_param['text']
