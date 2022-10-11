@@ -55,18 +55,19 @@ def authentication():
     )
     return creds
 
-def hour_rounder(t):
+#def hour_rounder(t):
     # Rounds to nearest hour by adding a timedelta hour if minute >= 30
-    return (t.replace(second=0, microsecond=0, minute=0, hour=t.hour) + datetime.timedelta(hours=t.minute//30))
+    #return (t.replace(second=0, microsecond=0, minute=0, hour=t.hour) + datetime.timedelta(hours=t.minute//30))
 
 @app.route('/webhook', methods=['GET','POST'])
 def webhook():
 
-    texto = check_open()
-    print("text = ret from check open = ",texto)
+    text_check_open = check_open()
+    print("text_check_open",text_check_open)
 
     text_param =  main()
     text = text_param['text']
+    text = text_param['text'] + text_check_open
     event_id = text_param['event_id']
 
     res = {
@@ -167,8 +168,8 @@ def hour_rounder(t):
     return (t.replace(second=0, microsecond=0, minute=0, hour=t.hour) + datetime.timedelta(hours=t.minute // 30))
 
 def check_open():
-    # current_dateTime = datetime.datetime.now() + datetime.timedelta(hours=3)
-    current_dateTime = datetime.datetime.now()
+    current_dateTime = datetime.datetime.now() + datetime.timedelta(hours=2)
+    # current_dateTime = datetime.datetime.now()
     # 2022-10-07 16:03:58.003427
 
     current_dateTime_rounded = hour_rounder(current_dateTime)
@@ -177,8 +178,8 @@ def check_open():
     hour_minute = current_dateTime_rounded.strftime('%H:%M')
     print("HOUR:", hour_minute)
 
-    open_start_time = ["08:00", "08:00", "08:00", "08:00", "08:00", "08:00", "12:00"]
-    open_end_time = ["17:00", "17:00", "17:00", "17:00", "17:00", "13:00", "13:00"]
+    open_start_time = ["12:00", "12:00", "08:00", "08:00", "08:00", "08:00", "12:00"]
+    open_end_time = ["19:00", "19:00", "17:00", "17:00", "17:00", "13:00", "13:00"]
 
     weekDays = ("hétfő", "kedd", "szerda", "csütörtök", "péntek", "szombat", "vasárnap")
     week_day = current_dateTime.weekday()
@@ -192,19 +193,17 @@ def check_open():
 
     if hour_minute < open_start_time[week_day]:
         print("KORÁN", hour_minute, "<", open_start_time[week_day])
-        text = "KORÁN. A mai nyitás " + open_start_time[week_day] + " a zárás " + open_end_time[week_day]
+        text_check_open = " KORÁN. A mai nyitás " + open_start_time[week_day] + " a zárás " + open_end_time[week_day]
 
     if hour_minute >= open_end_time[week_day]:
         print("KÉSŐN", hour_minute, ">=", open_end_time[week_day])
-        text = "KÉSŐN. A mai nyitás " + open_start_time[week_day] + " a zárás " + open_end_time[week_day]
+        text_check_open = " KÉSŐN. A mai nyitás " + open_start_time[week_day] + " a zárás " + open_end_time[week_day]
 
     if hour_minute >= open_start_time[week_day] and hour_minute <= open_end_time[week_day]:
-        print("KOZOTTE", open_start_time[week_day], "<", hour_minute, "<", open_end_time[week_day])
-        text = "True"
+        print(" KOZOTTE", open_start_time[week_day], "<", hour_minute, "<", open_end_time[week_day])
+        text_check_open = "True"
 
-    # return checked_open
-    return text
-
+    return text_check_open
 
 
     app.run()
