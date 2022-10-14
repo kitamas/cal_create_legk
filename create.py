@@ -96,14 +96,7 @@ def webhook():
 def main():
 
     req = request.get_json(force=True)
-    # print(json.dumps(req, indent=4))
-
-    year = req.get('sessionInfo').get('parameters').get('date').get('year')
-    month = req.get('sessionInfo').get('parameters').get('date').get('month')
-    day = req.get('sessionInfo').get('parameters').get('date').get('day')
-
-    hours = req.get('sessionInfo').get('parameters').get('time').get('hours')
-    minutes = req.get('sessionInfo').get('parameters').get('time').get('minutes')
+    #print(json.dumps(req, indent=4))
 
     summary = req.get('sessionInfo').get('parameters').get('summary')
     location = req.get('sessionInfo').get('parameters').get('location')
