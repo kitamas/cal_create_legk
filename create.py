@@ -104,22 +104,14 @@ def main():
     creds = authentication()
     service = build("calendar", "v3", credentials=creds)
 
-    d = datetime.datetime.now().date()
-    # 2022-10-01
-    today = datetime.datetime(d.year, d.month, d.day, 10) + datetime.timedelta(hours=2)
-    # 2022-10-01 12:00:00
-
-    #current_dateTime = datetime.datetime.now()
     current_dateTime = datetime.datetime.now() + datetime.timedelta(hours=3)
     # 2022-10-01 07:16:23.389600
 
     current_dateTime_rounded = hour_rounder(current_dateTime)
     # 2022-10-01 08:00:00
 
-    #start = today.isoformat("T", "seconds")
     start = current_dateTime_rounded.isoformat("T", "seconds")
 
-    #end = (today + datetime.timedelta(hours=1)).isoformat("T", "seconds")
     end = (current_dateTime_rounded + datetime.timedelta(hours=1)).isoformat("T", "seconds")
 
     #event_result = service.events().insert(calendarId='61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com',sendUpdates='all',
