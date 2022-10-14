@@ -96,7 +96,14 @@ def webhook():
 def main():
 
     req = request.get_json(force=True)
-    #print(json.dumps(req, indent=4))
+    # print(json.dumps(req, indent=4))
+
+    year = req.get('sessionInfo').get('parameters').get('date').get('year')
+    month = req.get('sessionInfo').get('parameters').get('date').get('month')
+    day = req.get('sessionInfo').get('parameters').get('date').get('day')
+
+    hours = req.get('sessionInfo').get('parameters').get('time').get('hours')
+    minutes = req.get('sessionInfo').get('parameters').get('time').get('minutes')
 
     summary = req.get('sessionInfo').get('parameters').get('summary')
     location = req.get('sessionInfo').get('parameters').get('location')
@@ -170,8 +177,8 @@ def check_open():
     hour_minute = current_dateTime_rounded.strftime('%H:%M')
     print("HOUR:", hour_minute)
 
-    open_start_time = ["12:00", "12:00", "08:00", "08:00", "08:00", "08:00", "12:00"]
-    open_end_time = ["19:00", "19:00", "17:00", "17:00", "17:00", "13:00", "13:00"]
+    open_start_time = ["08:00", "08:00", "08:00", "08:00", "08:00", "08:00", "00:00"]
+    open_end_time = ["17:00", "17:00", "17:00", "20:00", "17:00", "13:00", "00:00"]
 
     weekDays = ("hétfő", "kedd", "szerda", "csütörtök", "péntek", "szombat", "vasárnap")
     week_day = current_dateTime.weekday()
