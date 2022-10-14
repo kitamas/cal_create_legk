@@ -104,14 +104,22 @@ def main():
     creds = authentication()
     service = build("calendar", "v3", credentials=creds)
 
+    d = datetime.datetime.now().date()
+    # 2022-10-01
+    today = datetime.datetime(d.year, d.month, d.day, 10) + datetime.timedelta(hours=2)
+    # 2022-10-01 12:00:00
+
+    #current_dateTime = datetime.datetime.now()
     current_dateTime = datetime.datetime.now() + datetime.timedelta(hours=3)
     # 2022-10-01 07:16:23.389600
 
     current_dateTime_rounded = hour_rounder(current_dateTime)
     # 2022-10-01 08:00:00
 
+    #start = today.isoformat("T", "seconds")
     start = current_dateTime_rounded.isoformat("T", "seconds")
 
+    #end = (today + datetime.timedelta(hours=1)).isoformat("T", "seconds")
     end = (current_dateTime_rounded + datetime.timedelta(hours=1)).isoformat("T", "seconds")
 
     #event_result = service.events().insert(calendarId='61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com',sendUpdates='all',
@@ -170,8 +178,8 @@ def check_open():
     hour_minute = current_dateTime_rounded.strftime('%H:%M')
     print("HOUR:", hour_minute)
 
-    open_start_time = ["08:00", "08:00", "08:00", "08:00", "08:00", "08:00", "00:00"]
-    open_end_time = ["17:00", "17:00", "17:00", "20:00", "17:00", "13:00", "00:00"]
+    open_start_time = ["12:00", "12:00", "08:00", "08:00", "08:00", "08:00", "12:00"]
+    open_end_time = ["19:00", "19:00", "17:00", "17:00", "17:00", "13:00", "13:00"]
 
     weekDays = ("hétfő", "kedd", "szerda", "csütörtök", "péntek", "szombat", "vasárnap")
     week_day = current_dateTime.weekday()
