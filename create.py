@@ -107,7 +107,7 @@ def main():
     # 2022-10-01 12:00:00
 
     #current_dateTime = datetime.datetime.now()
-    current_dateTime = datetime.datetime.now() + datetime.timedelta(hours=2)
+    current_dateTime = datetime.datetime.now() + datetime.timedelta(hours=3)
     # 2022-10-01 07:16:23.389600
 
     current_dateTime_rounded = hour_rounder(current_dateTime)
@@ -165,7 +165,7 @@ def hour_rounder(t):
     # return (t.replace(second=0, microsecond=0, minute=0, hour=t.hour) + datetime.timedelta(hours=t.minute // 30))
 
     # Rounds to next hour by adding a timedelta hour + 1
-    return (t.replace(second=0, microsecond=0, minute=0, hour=t.hour))
+    return (t.replace(second=0, microsecond=0, minute=0, hour=t.hour + 1))
 
 
 def check_open():
