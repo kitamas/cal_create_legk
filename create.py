@@ -150,7 +150,7 @@ def main():
     start_event = datetime.datetime.strptime(event_result['start']['dateTime'],'%Y-%m-%dT%H:%M:%S%z')
     end_event = datetime.datetime.strptime(event_result['end']['dateTime'],'%Y-%m-%dT%H:%M:%S%z')
 
-    text = "Kezdő időpont: " + start_event.strftime("%B %A %H %M") + " Vége: " + end_event.strftime("%B %A %H %M")
+    text = "Kezdő időpont: " + start_event.strftime("%H %M") + " Vége: " + end_event.strftime("%H %M")
 
     text_param = {}
     text_param['text'] = text
@@ -202,7 +202,7 @@ def check_open():
 
     if hour_minute >= open_start_time[week_day] and hour_minute <= open_end_time[week_day]:
         print(" KOZOTTE", open_start_time[week_day], "<", hour_minute, "<", open_end_time[week_day])
-        text_check_open = "True"
+        text_check_open = ""
 
     return text_check_open
 
