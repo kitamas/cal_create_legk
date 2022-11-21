@@ -103,7 +103,7 @@ def main():
 
     d = datetime.datetime.now().date()
     # 2022-10-01
-    today = datetime.datetime(d.year, d.month, d.day, 10) + datetime.timedelta(hours=2)
+    today = datetime.datetime(d.year, d.month, d.day, 10) + datetime.timedelta(hours=1)
     # 2022-10-01 12:00:00
 
     #current_dateTime = datetime.datetime.now()
