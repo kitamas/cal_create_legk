@@ -179,7 +179,7 @@ def check_open():
     hour_minute = current_dateTime_rounded.strftime('%H:%M')
     print("HOUR:", hour_minute)
 
-    open_start_time = ["12:00", "12:00", "08:00", "08:00", "08:00", "08:00", "12:00"]
+    open_start_time = ["08:00", "08:00", "08:00", "08:00", "08:00", "08:00", "12:00"]
     open_end_time = ["19:00", "19:00", "17:00", "17:00", "17:00", "13:00", "13:00"]
 
     weekDays = ("hétfő", "kedd", "szerda", "csütörtök", "péntek", "szombat", "vasárnap")
@@ -194,11 +194,11 @@ def check_open():
 
     if hour_minute < open_start_time[week_day]:
         print("KORÁN", hour_minute, "<", open_start_time[week_day])
-        text_check_open = " KORÁN. A mai nyitás " + open_start_time[week_day] + " a zárás " + open_end_time[week_day]
+        text_check_open = " Korán. A mai nyitás " + open_start_time[week_day] + " a zárás " + open_end_time[week_day]
 
     if hour_minute >= open_end_time[week_day]:
         print("KÉSŐN", hour_minute, ">=", open_end_time[week_day])
-        text_check_open = " KÉSŐN. A mai nyitás " + open_start_time[week_day] + " a zárás " + open_end_time[week_day]
+        text_check_open = " Későn. A mai nyitás " + open_start_time[week_day] + " a zárás " + open_end_time[week_day]
 
     if hour_minute >= open_start_time[week_day] and hour_minute <= open_end_time[week_day]:
         print(" KOZOTTE", open_start_time[week_day], "<", hour_minute, "<", open_end_time[week_day])
