@@ -64,7 +64,7 @@ def webhook():
 
     text_param =  main()
     text = text_param['text']
-    text = text_param['text'] + text_check_open
+    # text = text_param['text'] + text_check_open
     event_id = text_param['event_id']
 
     res = {
