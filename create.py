@@ -107,7 +107,7 @@ def main():
     # 2022-10-01 12:00:00
 
     #current_dateTime = datetime.datetime.now()
-    current_dateTime = datetime.datetime.now() + datetime.timedelta(hours=2)
+    current_dateTime = datetime.datetime.now() + datetime.timedelta(hours=1)
     # 2022-10-01 07:16:23.389600
 
     current_dateTime_rounded = hour_rounder(current_dateTime)
@@ -150,7 +150,8 @@ def main():
     start_event = datetime.datetime.strptime(event_result['start']['dateTime'],'%Y-%m-%dT%H:%M:%S%z')
     end_event = datetime.datetime.strptime(event_result['end']['dateTime'],'%Y-%m-%dT%H:%M:%S%z')
 
-    text = "Kezdő időpont: " + start_event.strftime("%H:%M") + " Vége: " + end_event.strftime("%H:%M")
+    # text = "Kezdő időpont: " + start_event.strftime("%H:%M") + " Vége: " + end_event.strftime("%H:%M")
+    text = start_event.strftime("%H:%M") + "-" + end_event.strftime("%H:%M") + "-ig"
 
     text_param = {}
     text_param['text'] = text
@@ -169,7 +170,7 @@ def hour_rounder(t):
 
 
 def check_open():
-    current_dateTime = datetime.datetime.now() + datetime.timedelta(hours=2)
+    current_dateTime = datetime.datetime.now() + datetime.timedelta(hours=1)
     # current_dateTime = datetime.datetime.now()
     # 2022-10-07 16:03:58.003427
 
