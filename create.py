@@ -89,8 +89,8 @@ def webhook():
             "session" : "session_name",
             "parameters": {
                 "event_id" : event_id,
-                "date" : date,
-                "time" : time
+                "datewh" : date,
+                "timewh" : time
             }
         }
     }
